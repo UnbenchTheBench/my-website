@@ -19,7 +19,7 @@ export default function Navbar() {
           <Link href="#about" className="hover:text-cyan-400 transition">About</Link>
           <Link href="/projects" className="hover:text-cyan-400 transition">Projects</Link>
           <Link href="/skills" className="hover:text-cyan-400 transition">Skills</Link>
-          <Link href="#contact" className="hover:text-cyan-400 transition">Contact</Link>
+          <Link href="/contact" className="hover:text-cyan-400 transition">Contact</Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -37,7 +37,7 @@ export default function Navbar() {
           <Link href="#about" onClick={() => setIsOpen(false)} className="hover:text-cyan-400">About</Link>
           <Link href="/projects" onClick={() => setIsOpen(false)} className="hover:text-cyan-400">Projects</Link>
           <Link href="/skills" onClick={() => setIsOpen(false)} className="hover:text-cyan-400">Skills</Link>
-          <Link href="#contact" onClick={() => setIsOpen(false)} className="hover:text-cyan-400">Contact</Link>
+          <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-cyan-400">Contact</Link>
         </div>
       )}
     </nav>
