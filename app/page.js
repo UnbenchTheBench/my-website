@@ -49,25 +49,29 @@ export default function Home() {
         >
           <a
             href="/resume.pdf"
+            target="_blank"
             className="px-5 py-3 rounded-2xl bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/30"
           >
             Resume
           </a>
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/unbenchthebench"
+            target="_blank"
             className="px-5 py-3 rounded-2xl bg-purple-600 text-white font-semibold hover:bg-purple-500 transition-all shadow-lg shadow-purple-600/30"
           >
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/benchydutreuil"
+            target="_blank"
             className="px-5 py-3 rounded-2xl bg-pink-600 text-white font-semibold hover:bg-pink-500 transition-all shadow-lg shadow-pink-600/30"
           >
             LinkedIn
           </a>
 
           <a
-            href="#contact"
+            href="#"
+            target="_blank"
             className="px-5 py-3 rounded-2xl bg-red-600 text-white font-semibold hover:bg-red-500 transition-all shadow-lg shadow-red-600/30"
           >
             Contact

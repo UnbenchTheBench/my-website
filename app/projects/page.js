@@ -93,17 +93,45 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + idx * 0.2 }}
-              className="bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col"
+              className="bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col h-full"
             >
               <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
               <p className="text-gray-300 mb-4">{project.description}</p>
-              <Link
-                href={project.link}
-                target="_blank"
-                className="mt-auto px-4 py-2 bg-cyan-500 text-black rounded-lg font-semibold hover:bg-cyan-400 transition"
-              >
-                View on GitHub
-              </Link>
+              
+              {/* Spacer to push skills and link to absolute bottom */}
+              <div className="flex-grow"></div>
+              
+              {/* Skills and GitHub link container - positioned at absolute bottom */}
+              <div className="mt-auto">
+                {/* Display skills if they exist */}
+                {project.skills && (
+                  <div className="mb-3">
+                    <h3 className="text-sm font-semibold text-cyan-400 mb-2">Skills Used:</h3>
+                    <div className="grid grid-cols-3 gap-2">
+                      {Array.isArray(project.skills) ? (
+                        project.skills.map((skill, skillIdx) => (
+                          <div key={skillIdx} className="bg-gray-700 text-xs p-2 text-center text-gray-300 border border-gray-600 hover:border-cyan-500/50 transition-colors">
+                            {skill}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="bg-gray-700 text-xs p-2 text-center text-gray-300 border border-gray-600 hover:border-cyan-500/50 transition-colors">
+                          {project.skills}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+                
+                {/* GitHub link */}
+                <Link
+                  href={project.link}
+                  target="_blank"
+                  className="block w-full text-center px-4 py-2 bg-cyan-500 text-black rounded-lg font-semibold hover:bg-cyan-400 transition"
+                >
+                  {project.location}
+                </Link>
+              </div>
             </motion.div>
           ))
         )}
