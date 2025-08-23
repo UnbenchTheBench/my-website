@@ -17,7 +17,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 text-gray-300">
           <Link href="#about" className="hover:text-cyan-400 transition">About</Link>
-          <Link href="#projects" className="hover:text-cyan-400 transition">Projects</Link>
+          <Link href="/projects" className="hover:text-cyan-400 transition">Projects</Link>
           <Link href="#skills" className="hover:text-cyan-400 transition">Skills</Link>
           <Link href="#contact" className="hover:text-cyan-400 transition">Contact</Link>
         </div>

@@ -37,7 +37,7 @@ export default function Home() {
           transition={{ delay: 0.5 }}
           className="text-lg md:text-xl text-gray-300"
         >
-           CS student @ CSB/SJU • Researcher in Robotics & AI • Exploring the
+           CS student @ CSB/SJU • Researcher • Exploring the
           intersection of technology, economics, and human impact.
         </motion.p>
 
