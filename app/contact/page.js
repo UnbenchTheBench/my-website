@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,6 +13,36 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+
+  const [contactInfos, setcontactInfos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filepath] = useState('app/contact/contactInfo.xlsx');
+
+  useEffect(() => {
+    fetchContactInfo();
+  }, [filepath]);
+
+  async function fetchContactInfo() {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/getExcelData?filepath=${encodeURIComponent(filepath)}`);
+      if (response.ok) {
+        const data = await response.json();
+        setcontactInfos(data);
+      } else {
+        // Fallback to sample data if API fails
+        setcontactInfos([]);
+      }
+    } catch (error) {
+      console.error('Error fetching contact info:', error);
+      // Fallback to sample data
+      setcontactInfos([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -35,33 +66,6 @@ export default function Contact() {
       setTimeout(() => setSubmitStatus(null), 3000);
     }, 1000);
   };
-
-  const contactInfo = [
-    {
-      icon: '📧',
-      title: 'Email',
-      value: 'benchy.dutreuil@example.com',
-      link: 'mailto:benchy.dutreuil@example.com'
-    },
-    {
-      icon: '📱',
-      title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
-    },
-    {
-      icon: '📍',
-      title: 'Location',
-      value: 'San Francisco, CA',
-      link: '#'
-    },
-    {
-      icon: '💼',
-      title: 'LinkedIn',
-      value: 'linkedin.com/in/benchydutreuil',
-      link: 'https://linkedin.com/in/benchydutreuil'
-    }
-  ];
 
   const socialLinks = [
     { name: 'GitHub', icon: '🐙', url: 'https://github.com/benchydutreuil', color: 'hover:text-gray-400' },
@@ -91,6 +95,7 @@ export default function Contact() {
       </motion.p>
 
       <div className="w-full max-w-6xl px-4">
+
         <div className="grid gap-8 lg:grid-cols-2">
           
           {/* Contact Information */}
@@ -102,28 +107,41 @@ export default function Contact() {
           >
             <h2 className="text-3xl font-bold text-cyan-400 mb-6">Contact Information</h2>
             
-            {contactInfo.map((info, idx) => (
-              <motion.div
-                key={info.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * idx }}
-                className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <span className="text-2xl">{info.icon}</span>
-                <div>
-                  <h3 className="font-semibold text-gray-300">{info.title}</h3>
-                  <a 
-                    href={info.link} 
-                    className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                    target={info.link.startsWith('http') ? '_blank' : '_self'}
-                    rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
+
+            {!loading ? (
+              contactInfos.length > 0 ? (
+                contactInfos.map((info, idx) => (
+                  <motion.div
+                    key={info.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * idx }}
+                    className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
                   >
-                    {info.value}
-                  </a>
+                    <span className="text-2xl">{info.icon}</span>
+                    <div>
+                      <h3 className="font-semibold text-gray-300">{info.title}</h3>
+                      <a 
+                        href={info.link} 
+                        className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                        target={info.link.startsWith('http') ? '_blank' : '_self'}
+                        rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                      >
+                        {info.value}
+                      </a>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="text-center text-gray-400 text-xl">
+                  No contact information available
                 </div>
-              </motion.div>
-            ))}
+              )
+            ) : (
+              <div className="text-center text-gray-400 text-xl">
+                Loading Contacts...
+              </div>
+            )}
 
             {/* Social Links */}
             <div className="mt-8">

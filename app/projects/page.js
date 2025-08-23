@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filepath, setFilepath] = useState('app/projects/ProjectsTracker.xlsx');
+  const [filepath] = useState('app/projects/ProjectsTracker.xlsx');
 
   useEffect(() => {
     fetchProjects();
@@ -55,9 +55,7 @@ export default function Projects() {
     }
   }
 
-  const handleFilepathChange = (e) => {
-    setFilepath(e.target.value);
-  };
+
 
   if (loading) {
     return (

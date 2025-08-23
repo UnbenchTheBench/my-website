@@ -48,7 +48,7 @@ export default function Home() {
           className="flex gap-4 justify-center"
         >
           <a
-            href="/resume.pdf"
+            href="Resume_Benchy_Dutreuil.pdf"
             target="_blank"
             className="px-5 py-3 rounded-2xl bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/30"
           >
@@ -70,8 +70,7 @@ export default function Home() {
           </a>
 
           <a
-            href="#"
-            target="_blank"
+            href="/contact"
             className="px-5 py-3 rounded-2xl bg-red-600 text-white font-semibold hover:bg-red-500 transition-all shadow-lg shadow-red-600/30"
           >
             Contact
