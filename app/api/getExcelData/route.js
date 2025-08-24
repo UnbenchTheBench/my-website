@@ -23,17 +23,10 @@ export async function GET(request) {
     console.error('Error reading Excel file:', error);
     
     // Return sample data as fallback
-    const fallbackProjects = [
-      {
-        title: "Sample Project 1",
-        description: "This is a sample project description. Your Excel file couldn't be read.",
-        link: "#"
-      },
-      {
-        title: "Sample Project 2", 
-        description: "Another sample project. Check that your Excel file exists and has the correct format.",
-        link: "#"
-      }
+    const fallbackProjects = [{
+      error: error.message,
+      hint: "Please check if the Excel file exists and has the correct format.",
+    }
     ];
     
     return NextResponse.json(fallbackProjects);

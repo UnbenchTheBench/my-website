@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import styles from "./page.module.css";
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -40,12 +41,12 @@ export default function Skills() {
     : skills[activeCategory] || [];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
+    <main className={styles.main}>
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 sm:mb-8 text-center"
+        className={styles.title}
       >
         Skills & Expertise
       </motion.h1>
@@ -54,7 +55,7 @@ export default function Skills() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 text-center max-w-4xl px-4"
+        className={styles.subtitle}
       >
         A comprehensive overview of my technical skills and proficiency levels across various technologies and tools.
       </motion.p>
@@ -64,16 +65,16 @@ export default function Skills() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 px-4"
+        className={styles.categoryFilter}
       >
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
-            className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
+            className={`${styles.categoryButton} ${
               activeCategory === category
-                ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/30'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
+                ? styles.categoryButtonActive
+                : styles.categoryButtonInactive
             }`}
           >
             {category === 'all' ? 'All Skills' : category}
@@ -82,27 +83,27 @@ export default function Skills() {
       </motion.div>
 
       {/* Skills Grid */}
-      <div className="grid gap-4 sm:gap-6 w-full max-w-7xl px-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className={styles.skillsGrid}>
         {filteredSkills.map((skill, idx) => (
           <motion.div
             key={skill.name}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * idx }}
-            className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-gray-700/80 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 border border-gray-700/50 hover:border-cyan-500/30"
+            className={styles.skillCard}
           >
-            <div className="flex items-center mb-3 sm:mb-4">
-              <span className="text-2xl sm:text-3xl mr-2 sm:mr-3">{skill.icon}</span>
-              <h3 className="text-lg sm:text-xl font-bold">{skill.name}</h3>
+            <div className={styles.skillHeader}>
+              <span className={styles.skillIcon}>{skill.icon}</span>
+              <h3 className={styles.skillName}>{skill.name}</h3>
             </div>
             
             {/* Progress Bar */}
-            <div className="w-full bg-gray-700 rounded-full h-2 sm:h-3 mb-3">
+            <div className={styles.progressBarContainer}>
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${skill.level}%` }}
                 transition={{ duration: 1, delay: 0.2 + idx * 0.1 }}
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 sm:h-3 rounded-full"
+                className={styles.progressBar}
               />
             </div>
             

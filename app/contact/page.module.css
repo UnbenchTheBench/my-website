@@ -1,0 +1,266 @@
+.main {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #111827, #000000);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  margin-bottom: 3rem;
+  text-align: center;
+  max-width: 48rem;
+  padding: 0 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 72rem;
+  padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactInfoTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #22d3ee;
+  margin-bottom: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #1f2937;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.contactItem:hover {
+  background-color: #374151;
+}
+
+.contactIcon {
+  font-size: 1.5rem;
+}
+
+.contactContent h3 {
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.contactLink {
+  color: #22d3ee;
+  transition: color 0.2s;
+}
+
+.contactLink:hover {
+  color: #67e8f9;
+}
+
+.noContactInfo {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1.25rem;
+}
+
+.loading {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1.25rem;
+}
+
+.socialSection {
+  margin-top: 2rem;
+}
+
+.socialTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: #9ca3af;
+}
+
+.socialLink:hover[title*="GitHub"] {
+  color: #9ca3af;
+}
+
+.socialLink:hover[title*="LinkedIn"] {
+  color: #60a5fa;
+}
+
+.socialLink:hover[title*="Twitter"] {
+  color: #7dd3fc;
+}
+
+.socialLink:hover[title*="Portfolio"] {
+  color: #22d3ee;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactFormTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #22d3ee;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  color: white;
+  transition: all 0.2s;
+}
+
+.formInput::placeholder {
+  color: #9ca3af;
+}
+
+.formInput:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #06b6d4;
+  border-color: transparent;
+}
+
+.formTextarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  color: white;
+  resize: none;
+  transition: all 0.2s;
+  min-height: 5rem;
+}
+
+.formTextarea::placeholder {
+  color: #9ca3af;
+}
+
+.formTextarea:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #06b6d4;
+  border-color: transparent;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #06b6d4;
+  color: black;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #22d3ee;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  padding: 1rem;
+  background-color: rgba(22, 163, 74, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  border-radius: 0.5rem;
+  color: #4ade80;
+  text-align: center;
+}
+
+.additionalInfo {
+  margin-top: 4rem;
+  text-align: center;
+  max-width: 64rem;
+  padding: 0 1rem;
+}
+
+.additionalInfoTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #22d3ee;
+}
+
+.additionalInfoText {
+  color: #d1d5db;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}

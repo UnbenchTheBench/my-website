@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import styles from "./page.module.css";
 
 export default function Contact() {
 
@@ -75,12 +76,12 @@ export default function Contact() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center py-16">
+    <main className={styles.main}>
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-5xl font-extrabold mb-8 text-center"
+        className={styles.title}
       >
         Get In Touch
       </motion.h1>
@@ -89,23 +90,23 @@ export default function Contact() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-xl text-gray-300 mb-12 text-center max-w-3xl px-4"
+        className={styles.subtitle}
       >
         I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and development.
       </motion.p>
 
-      <div className="w-full max-w-6xl px-4">
+      <div className={styles.container}>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className={styles.grid}>
           
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-6"
+            className={styles.contactInfo}
           >
-            <h2 className="text-3xl font-bold text-cyan-400 mb-6">Contact Information</h2>
+            <h2 className={styles.contactInfoTitle}>Contact Information</h2>
             
 
             {!loading ? (
@@ -116,14 +117,14 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 * idx }}
-                    className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
+                    className={styles.contactItem}
                   >
-                    <span className="text-2xl">{info.icon}</span>
-                    <div>
-                      <h3 className="font-semibold text-gray-300">{info.title}</h3>
+                    <span className={styles.contactIcon}>{info.icon}</span>
+                    <div className={styles.contactContent}>
+                      <h3>{info.title}</h3>
                       <a 
                         href={info.link} 
-                        className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                        className={styles.contactLink}
                         target={info.link.startsWith('http') ? '_blank' : '_self'}
                         rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
                       >
@@ -133,20 +134,20 @@ export default function Contact() {
                   </motion.div>
                 ))
               ) : (
-                <div className="text-center text-gray-400 text-xl">
+                <div className={styles.noContactInfo}>
                   No contact information available
                 </div>
               )
             ) : (
-              <div className="text-center text-gray-400 text-xl">
+              <div className={styles.loading}>
                 Loading Contacts...
               </div>
             )}
 
             {/* Social Links */}
-            <div className="mt-8">
-              <h3 className="text-xl font-semibold text-gray-300 mb-4">Follow Me</h3>
-              <div className="flex space-x-4">
+            <div className={styles.socialSection}>
+              <h3 className={styles.socialTitle}>Follow Me</h3>
+              <div className={styles.socialLinks}>
                 {socialLinks.map((social, idx) => (
                   <motion.a
                     key={social.name}
@@ -156,7 +157,7 @@ export default function Contact() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 + idx * 0.1 }}
-                    className={`text-2xl ${social.color} transition-colors`}
+                    className={styles.socialLink}
                     title={social.name}
                   >
                     {social.icon}
@@ -171,13 +172,13 @@ export default function Contact() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="space-y-6"
+            className={styles.contactForm}
           >
-            <h2 className="text-3xl font-bold text-cyan-400 mb-6">Send a Message</h2>
+            <h2 className={styles.contactFormTitle}>Send a Message</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.formLabel}>
                   Name *
                 </label>
                 <input
@@ -187,13 +188,13 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  className={styles.formInput}
                   placeholder="Your name"
                 />
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.formLabel}>
                   Email *
                 </label>
                 <input
@@ -203,13 +204,13 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  className={styles.formInput}
                   placeholder="your.email@example.com"
                 />
               </div>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+              <div className={styles.formGroup}>
+                <label htmlFor="subject" className={styles.formLabel}>
                   Subject *
                 </label>
                 <input
@@ -219,13 +220,13 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  className={styles.formInput}
                   placeholder="What's this about?"
                 />
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+              <div className={styles.formGroup}>
+                <label htmlFor="message" className={styles.formLabel}>
                   Message *
                 </label>
                 <textarea
@@ -235,7 +236,7 @@ export default function Contact() {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
+                  className={styles.formTextarea}
                   placeholder="Tell me more about your project or inquiry..."
                 />
               </div>
@@ -243,7 +244,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className={styles.submitButton}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
@@ -252,7 +253,7 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-green-600/20 border border-green-500/50 rounded-lg text-green-400 text-center"
+                  className={styles.successMessage}
                 >
                   ✅ Message sent successfully! I'll get back to you soon.
                 </motion.div>
@@ -267,10 +268,10 @@ export default function Contact() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="mt-16 text-center max-w-4xl px-4"
+        className={styles.additionalInfo}
       >
-        <h2 className="text-3xl font-bold mb-6 text-cyan-400">Let's Work Together</h2>
-        <p className="text-gray-300 text-lg leading-relaxed">
+        <h2 className={styles.additionalInfoTitle}>Let's Work Together</h2>
+        <p className={styles.additionalInfoText}>
           Whether you have a project in mind, want to discuss potential opportunities, or just want to say hello, 
           I'd love to hear from you. I'm always interested in new challenges and collaborations.
         </p>
