@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -22,39 +22,58 @@ export default function Projects() {
         setProjects(data);
       } else {
         // Fallback to sample data if API fails
-        setProjects([
-          {
-            title: "Sample Project 1",
-            description: "This is a sample project description. Your Excel file couldn't be read.",
-            link: "#"
-          },
-          {
-            title: "Sample Project 2", 
-            description: "Another sample project. Check that your Excel file exists and has the correct format.",
-            link: "#"
-          }
-        ]);
+        setProjects([]);
       }
     } catch (error) {
       console.error('Error fetching projects:', error);
       // Fallback to sample data
-      setProjects([
-        {
-          title: "Sample Project 1",
-          description: "This is a sample project description. Your Excel file couldn't be read.",
-          link: "#"
-        },
-        {
-          title: "Sample Project 2", 
-          description: "Another sample project. Check that your Excel file exists and has the correct format.",
-          link: "#"
-        }
-      ]);
+      setProjects([]);
     } finally {
       setLoading(false);
     }
   }
+  
+  // Color palette for unique skill colors
+  const skillColors = [
+    "bg-red-500", "bg-blue-500", "bg-green-500",
+    "bg-yellow-400", "bg-purple-500", "bg-pink-500",
+    "bg-indigo-500", "bg-cyan-500", "bg-orange-500",
+    "bg-teal-500", "bg-emerald-500", "bg-rose-500",
+    "bg-violet-500", "bg-sky-500", "bg-amber-500"
+  ];
 
+  // Global skill color mapping that persists across all projects
+  const globalSkillColors = useRef(new Map());
+  const nextColorIndex = useRef(0);
+
+  // Function to get or assign color for a skill globally
+  function getGlobalSkillColor(skillName) {
+    // If we already have a color for this skill, return it
+    if (globalSkillColors.current.has(skillName)) {
+      return globalSkillColors.current.get(skillName);
+    }
+    
+    // Assign a new color to this skill
+    const color = skillColors[nextColorIndex.current % skillColors.length];
+    globalSkillColors.current.set(skillName, color);
+    nextColorIndex.current += 1;
+    
+    return color;
+  }
+
+  // Function to split skills string and assign consistent colors
+  function processSkills(skillsString) {
+    if (!skillsString) return [];
+    
+    // Split by comma and space, then trim each skill
+    const skillsArray = skillsString.split(', ').map(skill => skill.trim());
+    
+    // Assign consistent color to each skill using global mapping
+    return skillsArray.map(skill => ({
+      name: skill,
+      color: getGlobalSkillColor(skill)
+    }));
+  }
 
 
   if (loading) {
@@ -105,18 +124,15 @@ export default function Projects() {
                 {project.skills && (
                   <div className="mb-3">
                     <h3 className="text-sm font-semibold text-cyan-400 mb-2">Skills Used:</h3>
-                    <div className="grid grid-cols-3 gap-2">
-                      {Array.isArray(project.skills) ? (
-                        project.skills.map((skill, skillIdx) => (
-                          <div key={skillIdx} className="bg-gray-700 text-xs p-2 text-center text-gray-300 border border-gray-600 hover:border-cyan-500/50 transition-colors">
-                            {skill}
-                          </div>
-                        ))
-                      ) : (
-                        <div className="bg-gray-700 text-xs p-2 text-center text-gray-300 border border-gray-600 hover:border-cyan-500/50 transition-colors">
-                          {project.skills}
+                    <div className="flex flex-wrap gap-2">
+                      {processSkills(project.skills).map((skill, index) => (
+                        <div
+                          key={index}
+                          className={`text-xs px-3 py-2 text-center rounded-lg shadow border border-gray-600 hover:scale-105 transition-transform ${skill.color} text-white font-medium`}
+                        >
+                          {skill.name}
                         </div>
-                      )}
+                      ))}
                     </div>
                   </div>
                 )}
