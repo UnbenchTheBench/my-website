@@ -40,12 +40,12 @@ export default function Skills() {
     : skills[activeCategory] || [];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center py-16">
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-5xl font-extrabold mb-8 text-center"
+        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 sm:mb-8 text-center"
       >
         Skills & Expertise
       </motion.h1>
@@ -54,7 +54,7 @@ export default function Skills() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-xl text-gray-300 mb-12 text-center max-w-3xl px-4"
+        className="text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 text-center max-w-4xl px-4"
       >
         A comprehensive overview of my technical skills and proficiency levels across various technologies and tools.
       </motion.p>
@@ -64,13 +64,13 @@ export default function Skills() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="flex flex-wrap justify-center gap-4 mb-12"
+        className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 px-4"
       >
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
-            className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+            className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
               activeCategory === category
                 ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/30'
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
@@ -82,33 +82,33 @@ export default function Skills() {
       </motion.div>
 
       {/* Skills Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl px-4">
+      <div className="grid gap-4 sm:gap-6 w-full max-w-7xl px-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {filteredSkills.map((skill, idx) => (
           <motion.div
             key={skill.name}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * idx }}
-            className="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
+            className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-gray-700/80 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 border border-gray-700/50 hover:border-cyan-500/30"
           >
-            <div className="flex items-center mb-4">
-              <span className="text-3xl mr-3">{skill.icon}</span>
-              <h3 className="text-xl font-bold">{skill.name}</h3>
+            <div className="flex items-center mb-3 sm:mb-4">
+              <span className="text-2xl sm:text-3xl mr-2 sm:mr-3">{skill.icon}</span>
+              <h3 className="text-lg sm:text-xl font-bold">{skill.name}</h3>
             </div>
             
             {/* Progress Bar */}
-            <div className="w-full bg-gray-700 rounded-full h-3 mb-3">
+            <div className="w-full bg-gray-700 rounded-full h-2 sm:h-3 mb-3">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${skill.level}%` }}
                 transition={{ duration: 1, delay: 0.2 + idx * 0.1 }}
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 h-3 rounded-full"
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 sm:h-3 rounded-full"
               />
             </div>
             
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-400">Proficiency</span>
-              <span className="text-cyan-400 font-bold">{skill.level}%</span>
+              <span className="text-xs sm:text-sm text-gray-400">Proficiency</span>
+              <span className="text-cyan-400 font-bold text-sm sm:text-base">{skill.level}%</span>
             </div>
           </motion.div>
         ))}
@@ -119,10 +119,10 @@ export default function Skills() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="mt-16 text-center max-w-4xl px-4"
+        className="mt-12 sm:mt-16 text-center max-w-4xl px-4"
       >
-        <h2 className="text-3xl font-bold mb-6 text-cyan-400">Continuous Learning</h2>
-        <p className="text-gray-300 text-lg leading-relaxed">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-cyan-400">Continuous Learning</h2>
+        <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
           I'm constantly expanding my skill set and staying up-to-date with the latest technologies. 
           My approach combines deep expertise in core technologies with a passion for learning new tools and frameworks.
         </p>

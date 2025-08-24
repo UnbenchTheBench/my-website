@@ -18,6 +18,7 @@ export const metadata = {
   keywords: ['developer', 'portfolio', 'full-stack', 'React', 'Next.js'],
   authors: [{ name: 'Benchy Dutreuil' }],
   creator: 'Benchy Dutreuil',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   openGraph: {
     title: 'Benchy Dutreuil - Portfolio',
     description: 'Full-stack developer portfolio showcasing projects and skills',
@@ -35,6 +36,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

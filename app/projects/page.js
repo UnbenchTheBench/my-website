@@ -87,67 +87,69 @@ export default function Projects() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center py-16">
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col items-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-5xl font-extrabold mb-8"
+        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 sm:mb-8 text-center"
       >
         Projects
       </motion.h1>
       
 
-      <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-full max-w-5xl px-4">
+      <section className="grid gap-6 sm:gap-8 w-full max-w-7xl">
         {projects.length === 0 ? (
-          <div className="col-span-full text-center text-gray-400 text-xl">
+          <div className="col-span-full text-center text-gray-400 text-lg sm:text-xl">
             No projects found.
           </div>
         ) : (
-          projects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + idx * 0.2 }}
-              className="bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col h-full"
-            >
-              <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-              <p className="text-gray-300 mb-4">{project.description}</p>
-              
-              {/* Spacer to push skills and link to absolute bottom */}
-              <div className="flex-grow"></div>
-              
-              {/* Skills and GitHub link container - positioned at absolute bottom */}
-              <div className="mt-auto">
-                {/* Display skills if they exist */}
-                {project.skills && (
-                  <div className="mb-3">
-                    <h3 className="text-sm font-semibold text-cyan-400 mb-2">Skills Used:</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {processSkills(project.skills).map((skill, index) => (
-                        <div
-                          key={index}
-                          className={`text-xs px-3 py-2 text-center rounded-lg shadow border border-gray-600 hover:scale-105 transition-transform ${skill.color} text-white font-medium`}
-                        >
-                          {skill.name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+          <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            {projects.map((project, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + idx * 0.2 }}
+                className="bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-4 sm:p-6 flex flex-col h-full border border-gray-700/50 hover:border-cyan-500/30"
+              >
+                <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 text-white">{project.title}</h2>
+                <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed flex-grow">{project.description}</p>
                 
-                {/* GitHub link */}
-                <Link
-                  href={project.link}
-                  target="_blank"
-                  className="block w-full text-center px-4 py-2 bg-cyan-500 text-black rounded-lg font-semibold hover:bg-cyan-400 transition"
-                >
-                  {project.location}
-                </Link>
-              </div>
-            </motion.div>
-          ))
+                {/* Spacer to push skills and link to absolute bottom */}
+                <div className="flex-grow"></div>
+                
+                {/* Skills and GitHub link container - positioned at absolute bottom */}
+                <div className="mt-auto space-y-4">
+                  {/* Display skills if they exist */}
+                  {project.skills && (
+                    <div className="mb-3">
+                      <h3 className="text-xs sm:text-sm font-semibold text-cyan-400 mb-2">Skills Used:</h3>
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {processSkills(project.skills).map((skill, index) => (
+                          <div
+                            key={index}
+                            className={`text-xs px-2 sm:px-3 py-1.5 sm:py-2 text-center rounded-lg shadow border border-gray-600 hover:scale-105 transition-transform ${skill.color} text-white font-medium`}
+                          >
+                            {skill.name}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* GitHub link */}
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    className="block w-full text-center px-3 sm:px-4 py-2 sm:py-3 bg-cyan-500 text-black rounded-lg font-semibold hover:bg-cyan-400 transition-colors duration-200 text-sm sm:text-base"
+                  >
+                    {project.location}
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         )}
       </section>
     </main>
