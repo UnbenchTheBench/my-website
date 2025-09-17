@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('all');
 
-  const skills = {
+  /*const skills = {
     'Frontend': [
       { name: 'React', level: 90, icon: '⚛️' },
       { name: 'Next.js', level: 85, icon: '⚡' },
@@ -32,7 +32,9 @@ export default function Skills() {
       { name: 'VS Code', level: 90, icon: '💻' },
       { name: 'Postman', level: 75, icon: '📮' },
     ]
-  };
+  };*/
+
+  const skills = {};
 
   const categories = ['all', ...Object.keys(skills)];
 
